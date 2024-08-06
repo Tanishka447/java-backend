@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.ems.dto.EmployeeDto;
 
 import entity.Employee;
-import exception.resource;
+import exception.ResourceNotFound;
 import lombok.AllArgsConstructor;
 import mapper.EmployeeMapper;
 import repositry.EmployeeRepositry;
@@ -32,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
    @Override
    public EmployeeDto getEmployeeById(Long employeeId){
     Employee employee = employeeRepository.findById(employeeId)
-    .orElseThrow(() -> new resource("Employee doesnt exist with id" + employeeId));
+    .orElseThrow(() -> new ResourceNotFound("Employee doesnt exist with id" + employeeId));
    return EmployeeMapper.mapToEmployeeDto(employee);
 }
 
@@ -46,7 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
    @Override
    public EmployeeDto updateEmployee(Long employeeId, EmployeeDto updatedEmployee){
     Employee employee = employeeRepository.findById(employeeId).orElseThrow(
-    () -> new resource("Employee doent exist with id" + employeeId)
+    () -> new ResourceNotFound("Employee doent exist with id" + employeeId)
    );
    employee.setFirstName(updatedEmployee.getFirstName());
    employee.setLastName(updatedEmployee.getLastName());
@@ -59,7 +59,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 @Override
 public void  deleteEmployee(Long employeeId){
     Employee employee = employeeRepository.findById(employeeId).orElseThrow(
-    () -> new resource("Employee doent exist with id" + employeeId)
+    () -> new ResourceNotFound("Employee doent exist with id" + employeeId)
    );
    employeeRepository.deleteById(employeeId);
 }
