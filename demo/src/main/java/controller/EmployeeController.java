@@ -1,5 +1,4 @@
 package controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,6 @@ public class EmployeeController {
         return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
 
-    //Build get employee
 @GetMapping("{id}")
     public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("id")Long employeeId){
         EmployeeDto employeeDto  =employeeService.getEmployeeById(employeeId);
