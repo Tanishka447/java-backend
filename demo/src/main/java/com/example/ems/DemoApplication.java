@@ -12,5 +12,3 @@ public class DemoApplication {
     }
 
 }
-
-// ArrayList<Integer> arr= new ArrayList<>();
